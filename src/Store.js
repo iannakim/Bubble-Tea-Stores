@@ -55,13 +55,18 @@ class Store extends React.Component{
 
 
   render(){
-    console.log("STATE", this.state)
     // In class components, write your console.log above your return, below your render
+
+    let {storeName, orders} = this.props.store
+
     return(
       <li className="container">
-        <img src="https://image.spreadshirtmedia.com/image-server/v1/mp/designs/1022374492,width=178,height=178,version=1555513711/cute-kawaii-bubble-tea-tshirt-boba-milk-tea-lover.png" alt="buble tea"></img>
-        <p>Store Name: <span>{this.props.storeName}</span></p>
-        <button onClick={ this.handleOrderClick } >Orders: {this.state.count}</button>
+          <img src="https://ih1.redbubble.net/image.1006770049.1439/flat,750x1000,075,f.jpg" alt="bubble tea"></img>
+          
+          <p>Store Name: <span>{storeName}</span></p>
+          <button onClick={ this.handleOrderClick } >
+            Orders: {orders}
+          </button>
       </li>
 
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from './Header'
-import Store from './Store'
+import StoreContainer from './StoreContainer'
+import arrayOfStores from './database'
+import Form from './Form'
 
 import './App.css';
 
@@ -11,26 +13,35 @@ import './App.css';
 
 // JS  code can be interpolated in JSX with {}
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Header title="List of Bubble Tea Stores"/>
+// arrayOfStores -> [{}, {}, {}]
+  // arrayOfStores needs to be saved to state somewhere, so we can dynamically decide on the number of stores to render
+  // Only class components can have state
 
-        <Store storeName="Quicklys"/>
-        <Store storeName="Vivis"/>
-        <Store 
-          storeName="Yayas"
-          price={10}
-          boolean={true}
-          funcDefinition={() => {}}
-          arrays={ [] }
-          pojo={ {} }
-          />
 
-      </header>
-    </div>
-  );
-}
+  // Parent's state can be sent down as props
+    // state -> props (OK)
+  // Child's props should not become child's state
+    // props -> state (X)
 
+
+  class App extends React.Component {
+
+    state = {
+        stores: arrayOfStores
+    }
+    
+    render(){
+      return (
+        <div className="App">
+          < Header title="Top Bubble Tea Stores"/>
+          < Form />
+          < StoreContainer stores={this.state.stores} />
+      
+        </div>
+      );
+    }
+      
+  }
+    
 export default App;
+    
