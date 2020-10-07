@@ -25,7 +25,18 @@ class Form extends React.Component{
 
   handleSubmit = (evt) => {
       evt.preventDefault()
-      this.props.creditCard(this.state)
+        fetch("http//localhost:3000/stores", {
+          method: "POST",
+          headers: {"Content-Type": "Application/json"},
+          body: JSON.stringify({
+            storeName: this.state.storeName,
+            orders: this.state.orders
+          })
+        })
+        .then(res => res.json())
+        .then((newlyCreatedStore) => {
+          this.props.addStoreToState(newlyCreatedStore)
+        })
   }
 
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from './Header'
 import StoreContainer from './StoreContainer'
-import arrayOfStores from './database'
 import Form from './Form'
 
 import './App.css';
@@ -27,21 +26,61 @@ import './App.css';
   class App extends React.Component {
 
     state = {
-        stores: arrayOfStores
+        stores: []
     }
 
-    creditCard = (infoFromChild) => {
-      console.log(infoFromChild, "IN APP")
+    componentDidMount(){
+      fetch("http://localhost:3000/stores")
+      .then(res => res.json())
+      .then((arrayOfStores) => {
+        this.setState({
+          stores: arrayOfStores
+        })
+      })
+    }
+
+    addStoreToState = (newlyCreatedStore) => {
+      let copyOfStores = [...this.state.stores, newlyCreatedStore]
+      this.setState({
+        stores: copyOfStores
+      })
     }
     
+
+    deleteStoreFromState = (deletedID) => {
+      let copyOfStores = this.state.stores.filter(storeObj => {
+        return storeObj.id !== deletedID
+      })
+      this.setState({
+        stores: copyOfStores
+      })
+    }
+
+
+
+    updateStoreFromState = (updateObj) => {
+      let copyOfStores = this.state.stores.map((store) => {
+        if (store.id === updatedObj.id){
+          return updatedObj
+        } else {
+          return store
+        }
+      })
+    }
+
+
     render(){
       return (
         <div className="App">
           < Header title="Top Bubble Tea Stores"/>
           < Form 
-            creditCard={this.creditCard}
+            addStoreToState={this.addStoreToState}
             />
-          < StoreContainer stores={this.state.stores} />
+          < StoreContainer 
+            stores={this.state.stores} 
+            deleteStoreFromState={this.deleteStoreFromState}
+            updateStoreFromState={this.updateStoreFromState}  
+          />
       
         </div>
       );

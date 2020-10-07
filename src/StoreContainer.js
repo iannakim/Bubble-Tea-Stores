@@ -7,7 +7,11 @@ function StoreContainer(props){
     // [{}, {}, {}, {}] -> [<>, <>, <>, <>]
 
     let arrayOfComponents = props.stores.map((singularStoreObj) => {
-        return <Store key={singularStoreObj.id} store={singularStoreObj} />
+        return <Store 
+                key={singularStoreObj.id}
+                store={singularStoreObj}
+                deleteStoreFromState={props.deleteStoreFromState}
+                />
     })
     
     return(

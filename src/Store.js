@@ -49,9 +49,19 @@ class Store extends React.Component{
       // })
 
 
-
   }
 
+
+  handleDelete = () => {
+    fetch(`http:localhost:3000/stores/${this.props.store.id}`, {
+      method: "DELETE"
+    })
+      .then(res => res.json())
+      .then((deletedObj) => {
+        this.props.deleteStoreFromState(deletedObj.id)
+      })
+
+  }
 
 
   render(){
@@ -62,7 +72,9 @@ class Store extends React.Component{
     return(
       <li className="container">
           <img src="https://ih1.redbubble.net/image.1006770049.1439/flat,750x1000,075,f.jpg" alt="bubble tea"></img>
-          
+          <button className="delButton" onClick={this.handleDelete}>
+            x
+          </button>
           <p>Store Name: <span>{storeName}</span></p>
           <button onClick={ this.handleOrderClick } >
             Orders: {orders}
