@@ -23,13 +23,19 @@ class Form extends React.Component{
   }
 
 
+  handleSubmit = (evt) => {
+      evt.preventDefault()
+      this.props.creditCard(this.state)
+  }
+
+
 
     render(){
-      console.log(this.state)
+      // console.log(this.state)
       return(
         <div>
             <h2>Open Up a franchise</h2>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <label htmlFor="s_name">Name</label>
                     <input type="text"
                       id="s_name"

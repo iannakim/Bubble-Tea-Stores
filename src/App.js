@@ -29,12 +29,18 @@ import './App.css';
     state = {
         stores: arrayOfStores
     }
+
+    creditCard = (infoFromChild) => {
+      console.log(infoFromChild, "IN APP")
+    }
     
     render(){
       return (
         <div className="App">
           < Header title="Top Bubble Tea Stores"/>
-          < Form />
+          < Form 
+            creditCard={this.creditCard}
+            />
           < StoreContainer stores={this.state.stores} />
       
         </div>
