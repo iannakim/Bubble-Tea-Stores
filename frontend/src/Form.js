@@ -25,7 +25,7 @@ class Form extends React.Component{
 
   handleSubmit = (evt) => {
       evt.preventDefault()
-        fetch("http//localhost:3000/stores", {
+        fetch("http://localhost:3000/stores", {
           method: "POST",
           headers: {"Content-Type": "Application/json"},
           body: JSON.stringify({
@@ -45,7 +45,7 @@ class Form extends React.Component{
       // console.log(this.state)
       return(
         <div>
-            <h2>Open Up a franchise</h2>
+            <h2>Open up a franchise!</h2>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="s_name">Name</label>
                     <input type="text"

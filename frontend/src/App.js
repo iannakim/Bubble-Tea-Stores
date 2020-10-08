@@ -4,6 +4,7 @@ import StoreContainer from './StoreContainer'
 import Form from './Form'
 
 import './App.css';
+import arrayOfDrinks from './DrinksContainer';
 
 
 // Props is information coming from a Parent Component down to its children
@@ -26,7 +27,8 @@ import './App.css';
   class App extends React.Component {
 
     state = {
-        stores: []
+        stores: [],
+        drinks: arrayOfDrinks
     }
 
     componentDidMount(){
@@ -58,7 +60,7 @@ import './App.css';
 
 
 
-    updateStoreFromState = (updateObj) => {
+    updateStoreFromState = (updatedObj) => {
       let copyOfStores = this.state.stores.map((store) => {
         if (store.id === updatedObj.id){
           return updatedObj
@@ -66,18 +68,24 @@ import './App.css';
           return store
         }
       })
+
+      this.setState({
+        stores: copyOfStores
+      })
+
     }
 
 
     render(){
       return (
         <div className="App">
-          < Header title="Top Bubble Tea Stores"/>
+          < Header title="🐶 STARBARKS NYC ☕️"/>
           < Form 
             addStoreToState={this.addStoreToState}
             />
           < StoreContainer 
-            stores={this.state.stores} 
+            stores={this.state.stores}
+            drinks={this.state.drinks} 
             deleteStoreFromState={this.deleteStoreFromState}
             updateStoreFromState={this.updateStoreFromState}  
           />

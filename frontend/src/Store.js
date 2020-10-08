@@ -13,47 +13,26 @@ import React from 'react'
 class Store extends React.Component{
   // event listeners should be defined in the same place as its being passed in
     // your event listeners inside class components should be arrow functions
-  
-  
-  state = {
-    count: 10,
-    open: true
-  }
-
-
-  
+    
     handleOrderClick = (evt) => {
-    // Using arroa functions make 'this' the instance
-      // Using 'bind' is annoying
-
-    // Anytime that state needs to chage, use 'this.setState'
-      //setState triggers a rerender
-    let partialStateOnj = {count: this.state.count +1}
-    this.setState(partialStateOnj)
-
-    //SECOND ARGUMENT of this.setState is a callback
-    //this.setState({}, () => {
-      // What to do after state has changed
-    // })
-
-    // Anytime that your new state is dependent on your old state,
-    // you might want to use functional setState
-        //the return value of the callback is a POJO
-        //that POJO gets merged into old state
-
-      // this.setState((oldState) => {
-      //   return {
-      //     count: oldState.count +1
-      //   }
-
-      // })
-
-
-  }
+      fetch(`http://localhost:3000/stores/${this.props.store.id}`, {
+      method: "PATCH",
+      headers: {
+          "content-type": "Application/json"
+      },
+      body: JSON.stringify({
+          orders: this.props.store.orders + 1
+      })
+  })
+      .then(res => res.json())
+      .then(updatedStore => {
+          this.props.updateStoreFromState(updatedStore)
+      })
+}
 
 
   handleDelete = () => {
-    fetch(`http:localhost:3000/stores/${this.props.store.id}`, {
+    fetch(`http://localhost:3000/stores/${this.props.store.id}`, {
       method: "DELETE"
     })
       .then(res => res.json())
@@ -66,20 +45,24 @@ class Store extends React.Component{
 
   render(){
     // In class components, write your console.log above your return, below your render
-
+    let drinkMenu = this.props.drinks.map((drink) => {
+      // console.log(drink)
+      return <li key={drink.id} >{drink.name}</li>
+    })
     let {storeName, orders} = this.props.store
 
     return(
-      <li className="container">
-          <img src="https://ih1.redbubble.net/image.1006770049.1439/flat,750x1000,075,f.jpg" alt="bubble tea"></img>
-          <button className="delButton" onClick={this.handleDelete}>
-            x
-          </button>
-          <p>Store Name: <span>{storeName}</span></p>
-          <button onClick={ this.handleOrderClick } >
-            Orders: {orders}
-          </button>
-      </li>
+      <div className="container">
+            <img src="https://static.fabfitfun.com/magazine/wp-content/uploads/2019/01/31104253/Screen-Shot-2019-01-31-at-10.42.05-AM.jpg" alt='Starbarks' />
+            <button className="delButton" onClick={this.handleDelete}>
+                x
+            </button>
+            <p>{storeName}</p>
+            <ul className="menu">{drinkMenu}</ul><br/>
+            <button onClick={ this.handleOrderClick } >
+                Orders: {orders}
+            </button>
+      </div>
 
 
     )

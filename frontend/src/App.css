@@ -1,6 +1,6 @@
 
 .App {
-  text-align: center;
+  background: #294d0a;
 }
 
 .search-box input{
@@ -18,10 +18,11 @@
 form {
   display: flex;
   padding: 1em;
-  background: #F3D9DC;
-  width: 35%;
+  background: #442a09;
+  color: white;
+  width: 60%;
   margin: auto;
-  border: .2em solid #D7BEA8;
+  border: .1em solid #D7BEA8;
   border-radius: 5px;
   justify-content: center;
   margin-bottom: 2em;
@@ -29,8 +30,9 @@ form {
 
 input[type='submit']{
   margin-left: 10px;
-  background: rgb(0, 196, 65);
+  background: rgb(138, 119, 223);
   color: #fff;
+  font-size: 1em;
   font-weight: bold;
   cursor: pointer;
   transition: background 0.23s;
@@ -46,28 +48,41 @@ input[type='text']{
 }
 
 h1{
+  text-align: center;
   font-family: 'Courier New', Courier, monospace, Helvetica, sans-serif;
   font-size: 3em;
+  color: rgb(236, 250, 41);
   margin-bottom: 30px;
 }
 
+h2{
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace, Helvetica, sans-serif;
+  font-size: 1.5em;
+  color: rgb(252, 187, 67);
+  margin-bottom: 0px;
+}
+
 .container {
-  border: .2em solid #D7BEA8;
-  background-color: #7accda;
+  border: .1em solid #e9200a;
+  background-color: #61421a;
   border-radius: 5px;
   padding: 1em;
-  width: 35%;
+  width: 75%;
   margin: auto;
   margin-bottom: 1em;
   display: table;
+  font-family: 'Courier New', Courier, monospace, Helvetica, sans-serif;
+  font-size: 1.5em;
+  color: rgb(252, 187, 67);
 }
 
 .container.liked {
-  background-color: #00FA9A;
+  background-color: #68cea6;
 }
 
 .container.disliked {
-  background-color: #DC143C;
+  background-color: #e491a1;
 }
 
 
@@ -77,21 +92,22 @@ h1{
 
 .container img {
   float: left;
-  max-width: 60px;
-  width: 100%;
-  margin-right: 20px;
-  border-radius: 50%;
+  max-width: 200px;
+  width: 80%;
+  margin-right: 40px;
+  border-radius: 20%;
   cursor: pointer;
+  padding: 0.4em .4em;
 }
 
 .container button {
   float: right;
   position: relative;
-  padding: 0.3em 1.2em;
-  background-color: #96c1f2;
+  padding: 0.3em .7em;
+  background-color: #c3ac9a;
   border-radius: 10%;
   vertical-align: middle;
-  font-size: 1em;
+  font-size: .8em;
 	box-shadow: 0 3px 20px 0 #0000003b;
 
 }
@@ -99,7 +115,18 @@ h1{
 .container button.delButton {
   float: right;
   position: relative;
-  background-color: #B23914;
-  font-size: .5em;
+  background-color: #ffffff;
+  font-size: .6em;
 	box-shadow: 0 3px 20px 0 #0000003b;
+}
+
+.menu {
+  font-family: 'Courier New', Courier, monospace, Helvetica, sans-serif;
+  font-size: .7em;
+  color: rgb(12, 12, 12);
+}
+
+ul {
+  font-weight: bold;
+  list-style-type: square;
 }
