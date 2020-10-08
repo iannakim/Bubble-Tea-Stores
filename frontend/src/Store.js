@@ -14,6 +14,13 @@ class Store extends React.Component{
   // event listeners should be defined in the same place as its being passed in
     // your event listeners inside class components should be arrow functions
     
+
+
+    state = {
+      open: true
+    }
+
+
     handleOrderClick = (evt) => {
       fetch(`http://localhost:3000/stores/${this.props.store.id}`, {
       method: "PATCH",
@@ -43,6 +50,18 @@ class Store extends React.Component{
   }
 
 
+  // componentWillUnmount(){
+  //   console.log("GOODBYE", this.props.store.storeName)
+  // }
+
+
+  toggleStore = (evt) => {
+    this.setState({
+      open: !this.state.open
+    })
+  }
+
+
   render(){
     // In class components, write your console.log above your return, below your render
     let drinkMenu = this.props.drinks.map((drink) => {
@@ -53,7 +72,11 @@ class Store extends React.Component{
 
     return(
       <div className="container">
-            <img src="https://static.fabfitfun.com/magazine/wp-content/uploads/2019/01/31104253/Screen-Shot-2019-01-31-at-10.42.05-AM.jpg" alt='Starbarks' />
+            <img 
+            src="https://static.fabfitfun.com/magazine/wp-content/uploads/2019/01/31104253/Screen-Shot-2019-01-31-at-10.42.05-AM.jpg" 
+            alt='Starbarks' 
+            onClick={this.toggleStore}
+            />
             <button className="delButton" onClick={this.handleDelete}>
                 x
             </button>
@@ -62,6 +85,7 @@ class Store extends React.Component{
             <button onClick={ this.handleOrderClick } >
                 Orders: {orders}
             </button>
+            { this.state.open ? <h6>Open</h6> : <h6>Closed</h6> }
       </div>
 
 

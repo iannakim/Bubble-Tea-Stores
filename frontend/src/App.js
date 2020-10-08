@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header'
 import StoreContainer from './StoreContainer'
 import Form from './Form'
+import Search from './Search'
 
 import './App.css';
 import arrayOfDrinks from './DrinksContainer';
@@ -28,7 +29,15 @@ import arrayOfDrinks from './DrinksContainer';
 
     state = {
         stores: [],
-        drinks: arrayOfDrinks
+        drinks: arrayOfDrinks,
+        searchTerm: ""
+    }
+
+
+    changeSearchTerm = (termFromChild) => {
+      this.setState({
+        searchTerm: termFromChild
+      })
     }
 
     componentDidMount(){
@@ -77,14 +86,25 @@ import arrayOfDrinks from './DrinksContainer';
 
 
     render(){
+      console.log(this.state.searchTerm)
+    
+      //determines what shows up on our browser
+      let filteredArray = this.state.stores.filter((store) => {
+        return store.storeName.includes(this.state.searchTerm)
+      })
+
       return (
         <div className="App">
           < Header title="🐶 STARBARKS NYC ☕️"/>
+          < Search 
+            searchTerm={this.state.searchTerm}
+            changeSearchTerm={this.changeSearchTerm}
+          />
           < Form 
             addStoreToState={this.addStoreToState}
             />
           < StoreContainer 
-            stores={this.state.stores}
+            stores={filteredArray}
             drinks={this.state.drinks} 
             deleteStoreFromState={this.deleteStoreFromState}
             updateStoreFromState={this.updateStoreFromState}  

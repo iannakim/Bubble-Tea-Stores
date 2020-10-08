@@ -1,6 +1,7 @@
 
 .App {
   background: #294d0a;
+  text-align: center;
 }
 
 .search-box input{
@@ -129,4 +130,5 @@ h2{
 ul {
   font-weight: bold;
   list-style-type: square;
+  text-align: left;
 }
