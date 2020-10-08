@@ -5,7 +5,6 @@ import Form from './Form'
 import Search from './Search'
 
 import './App.css';
-import arrayOfDrinks from './DrinksContainer';
 
 
 // Props is information coming from a Parent Component down to its children
@@ -29,7 +28,6 @@ import arrayOfDrinks from './DrinksContainer';
 
     state = {
         stores: [],
-        drinks: arrayOfDrinks,
         searchTerm: ""
     }
 
@@ -86,11 +84,10 @@ import arrayOfDrinks from './DrinksContainer';
 
 
     render(){
-      console.log(this.state.searchTerm)
-    
+      // console.log(this.state.searchTerm)
       //determines what shows up on our browser
       let filteredArray = this.state.stores.filter((store) => {
-        return store.storeName.includes(this.state.searchTerm)
+        return store.storeName.toLowerCase().includes(this.state.searchTerm.toLowerCase())
       })
 
       return (
@@ -105,7 +102,6 @@ import arrayOfDrinks from './DrinksContainer';
             />
           < StoreContainer 
             stores={filteredArray}
-            drinks={this.state.drinks} 
             deleteStoreFromState={this.deleteStoreFromState}
             updateStoreFromState={this.updateStoreFromState}  
           />

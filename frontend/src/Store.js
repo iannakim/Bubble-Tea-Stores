@@ -1,4 +1,5 @@
 import React from 'react'
+import arrayOfDrinks from './DrinksContainer';
 
 // Class Components: Need a function called 'render' that returns ONE chunk of JSX
   // Class Components should be capitalized
@@ -17,7 +18,8 @@ class Store extends React.Component{
 
 
     state = {
-      open: true
+      open: true,
+      drinks: arrayOfDrinks,
     }
 
 
@@ -64,7 +66,7 @@ class Store extends React.Component{
 
   render(){
     // In class components, write your console.log above your return, below your render
-    let drinkMenu = this.props.drinks.map((drink) => {
+    let drinkMenu = this.state.drinks.map((drink) => {
       // console.log(drink)
       return <li key={drink.id} >{drink.name}</li>
     })

@@ -11,7 +11,6 @@ function StoreContainer(props){
                 store={singularStoreObj}
                 deleteStoreFromState={props.deleteStoreFromState}
                 updateStoreFromState={props.updateStoreFromState}
-                drinks={props.drinks}
                 />
     })
     
