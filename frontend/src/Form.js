@@ -3,7 +3,7 @@ import React from 'react'
 
 
 class Form extends React.Component{
-  
+  //leave form empty
   state = {
     storeName: "",
     orders: ""
